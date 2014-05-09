@@ -35,6 +35,18 @@ def create_objective_function_and_gradient(cameras, ball_positions, ball_radii):
 
     return objective_function, gradient
 
+def find_point3d(cameras, ball_positions, ball_radii):
+    objective_function, gradient = create_objective_function_and_gradient(cameras, ball_positions, ball_radii)
+    point3d = np.array([0,0,0])  # initial guess
+    learning_rate = .3
+
+    eps = 0.1
+    while err > eps:
+        point3d = point3d - learning_rate * gradient(point3d)
+        err = objective_function(point3d)
+
+    return point3d
+
 # distance is in centimeters
 class Camera():
     def __init__(self, position, point_correspondences):
