@@ -1,0 +1,54 @@
+Clicking Frame 100
+1 357
+298 606
+Clicking Frame 101
+62 375
+346 612
+Clicking Frame 102
+114 372
+399 612
+Clicking Frame 103
+171 379
+433 604
+Clicking Frame 104
+215 387
+479 609
+Clicking Frame 110
+453 408
+674 595
+Clicking Frame 111
+483 407
+700 596
+Clicking Frame 112
+513 412
+727 595
+Clicking Frame 113
+544 413
+757 591
+Clicking Frame 200
+1419 491
+1517 580
+Clicking Frame 201
+1421 491
+1518 579
+Clicking Frame 202
+1419 490
+1521 582
+Clicking Frame 203
+1421 494
+1521 577
+Clicking Frame 250
+1430 500
+1508 576
+Clicking Frame 251
+1426 500
+1506 576
+Clicking Frame 252
+1422 497
+1505 577
+Clicking Frame 253
+1419 496
+1503 574
+Clicking Frame 254
+1411 494
+1503 579
