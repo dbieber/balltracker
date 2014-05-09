@@ -70,4 +70,4 @@ point_correspondences = [
 camera_position = [70, 60, 4]
 camera = Camera(camera_position, point_correspondences)
 # create_objective_function_and_gradient([camera], ball_positions, ball_radii)
-print camera.proj([50,50,3.5])
+print camera.proj([-35.0,0,0.0])
