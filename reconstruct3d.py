@@ -35,6 +35,18 @@ def create_objective_function_and_gradient(cameras, ball_positions, ball_radii):
 
     return objective_function, gradient
 
+def find_point3d(cameras, ball_positions, ball_radii):
+    objective_function, gradient = create_objective_function_and_gradient(cameras, ball_positions, ball_radii)
+    point3d = np.array([0,0,0])  # initial guess
+    learning_rate = .3
+
+    eps = 0.1
+    while err > eps:
+        point3d = point3d - learning_rate * gradient(point3d)
+        err = objective_function(point3d)
+
+    return point3d
+
 # distance is in centimeters
 class Camera():
     def __init__(self, position, point_correspondences):
@@ -71,3 +83,11 @@ camera_position = [70, 60, 4]
 camera = Camera(camera_position, point_correspondences)
 # create_objective_function_and_gradient([camera], ball_positions, ball_radii)
 print camera.proj([-35.0,0,0.0])
+
+def reconstruct(cameras, ball_positions_in_all_frames, ball_radii_in_all_frames):
+    point3ds = []
+    for ball_positions, ball_radii in zip(ball_positions_in_all_frames, ball_radii_in_all_frames):
+        point3d.append(find_point3d(cameras, ball_positions, ball_radii))
+
+    return point3ds
+
