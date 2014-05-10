@@ -1,6 +1,7 @@
 from numpy.linalg import lstsq
 import cv2
 import numpy as np
+
 def create_objective_function_and_gradient(cameras, ball_positions, ball_radii):
 
     def proj(point3d, camera):
@@ -41,6 +42,7 @@ def find_point3d(cameras, ball_positions, ball_radii):
     learning_rate = .3
 
     eps = 0.1
+    err = 2 * eps
     while err > eps:
         point3d = point3d - learning_rate * gradient(point3d)
         err = objective_function(point3d)
@@ -69,25 +71,9 @@ class Camera():
         imagePoints, jacobian = cv2.projectPoints(np.array([point3d]), self.rvecs, self.tvecs, self.cameraMatrix, self.distCoeffs)
         return imagePoints[0]
 
-
-# 3d: 0,0,0 is center of table
-# 2d: 0,0 is top left corner of image
-point_correspondences = [
-    [[-70,0,0], [854, 352]],
-    [[-70,15,0], [737, 352]],
-    [[-70,0,10], [858, 273]],
-    [[-35,0,0], [1068, 356]]
-]
-
-camera_position = [70, 60, 4]
-camera = Camera(camera_position, point_correspondences)
-# create_objective_function_and_gradient([camera], ball_positions, ball_radii)
-print camera.proj([-35.0,0,0.0])
-
 def reconstruct(cameras, ball_positions_in_all_frames, ball_radii_in_all_frames):
     point3ds = []
     for ball_positions, ball_radii in zip(ball_positions_in_all_frames, ball_radii_in_all_frames):
-        point3d.append(find_point3d(cameras, ball_positions, ball_radii))
+        point3ds.append(find_point3d(cameras, ball_positions, ball_radii))
 
     return point3ds
-
