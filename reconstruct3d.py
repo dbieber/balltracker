@@ -83,3 +83,11 @@ camera_position = [70, 60, 4]
 camera = Camera(camera_position, point_correspondences)
 # create_objective_function_and_gradient([camera], ball_positions, ball_radii)
 print camera.proj([-35.0,0,0.0])
+
+def reconstruct(cameras, ball_positions_in_all_frames, ball_radii_in_all_frames):
+    point3ds = []
+    for ball_positions, ball_radii in zip(ball_positions_in_all_frames, ball_radii_in_all_frames):
+        point3d.append(find_point3d(cameras, ball_positions, ball_radii))
+
+    return point3ds
+
