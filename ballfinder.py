@@ -42,8 +42,8 @@ class BallFinder():
         # TODO(Bieber) remove redundency
         tbc = self.threshold_by_color(frame)
         ret,thresh = cv2.threshold(tbc, 127, 255, 0)
-        cv2.imshow('arc', tbc)
-        cv2.waitKey(-1)
+        # cv2.imshow('arc', tbc)
+        # cv2.waitKey(-1)
 
         contours,hierarchy = cv2.findContours(thresh, 1, 2)
         contours = sorted(contours, lambda c1, c2: 1 if cv2.contourArea(c2) - cv2.contourArea(c1) > 0 else -1)
@@ -65,7 +65,7 @@ class BallFinder():
         # Returns list of ball locations
         locations = []
         frame_count = int(self.vc.get(cv.CV_CAP_PROP_FRAME_COUNT))
-        for frame_i in xrange(400, 1000, 30):
+        for frame_i in xrange(0, frame_count):
             frame = self.get_frame(frame_i)
             ball = self.find_ball_in_frame(frame)
             if ball:
@@ -80,7 +80,7 @@ def main():
     # bf = BallFinder(filename_mov)
     # print bf.find()
 
-    filename_mov = "%s/data/run000/backleft.MOV" % os.getcwd()
+    filename_mov = "%s/data/run000/backright.MOV" % os.getcwd()
     bf = BallFinder(filename_mov)
     print bf.find()
 
