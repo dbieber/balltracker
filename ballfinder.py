@@ -26,7 +26,7 @@ class BallFinder():
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         # define range of blue color in HSV
-        # lower_orange = np.array([3, 183, 247])
+        #lower_orange = np.array([3, 183, 247])
         # upper_orange = np.array([255, 255, 255])
         lower_orange = np.array([0, 206, 161]) # version that seems to work well
         # lower_orange = np.array([0, 0, 0])
@@ -72,7 +72,8 @@ class BallFinder():
                 ball_location, ball_radius = ball
                 # self.show_frame_with_ball(frame, ball_location, ball_radius)
             locations.append(ball)
-            print frame_i
+            if frame_i % 100 == 0:
+                print frame_i
         return locations
 
 def main():
@@ -80,7 +81,7 @@ def main():
     # bf = BallFinder(filename_mov)
     # print bf.find()
 
-    filename_mov = "%s/data/run000/backright.MOV" % os.getcwd()
+    filename_mov = "%s/data/run000/backleft.MOV" % os.getcwd()
     bf = BallFinder(filename_mov)
     print bf.find()
 
